@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "380011847931",
+    "firebase_url": "https://electrosite-9172e.firebaseio.com",
+    "project_id": "electrosite-9172e",
+    "storage_bucket": "electrosite-9172e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380011847931:android:8c7838324fa6067b94105e",
+        "android_client_info": {
+          "package_name": "com.example.gre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380011847931-sub4p209romnja0v96l8vu0akhugnbde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCk-UgeQXmN9HoAAY09GB8MBYWa8sQX9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380011847931-sub4p209romnja0v96l8vu0akhugnbde.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380011847931:android:b19790c16b17ad7694105e",
+        "android_client_info": {
+          "package_name": "net.smallacademy.cameraandgallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380011847931-ffdnkc2tlp0vfrj6c0iilmvg5vnk6kn8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.smallacademy.cameraandgallery",
+            "certificate_hash": "4f8a2564fe2558e9aa6905a21ae565f0a3d08a1a"
+          }
+        },
+        {
+          "client_id": "380011847931-sub4p209romnja0v96l8vu0akhugnbde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCk-UgeQXmN9HoAAY09GB8MBYWa8sQX9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380011847931-sub4p209romnja0v96l8vu0akhugnbde.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
