@@ -145,6 +145,7 @@
             android:inputType="textPassword"
             android:maxLength="50"
             android:maxLines="1"
+            android:imeOptions="actionDone"
             android:id="@+id/sign_up_password"
             android:singleLine="true"
             android:textColor="@color/blue_grey_800"
