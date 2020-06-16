@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase db;
     DatabaseReference users;
+    DatabaseReference scores;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         users = db.getReference("users");
+        scores = db.getReference("scores");
 
         initToolbar();
     }
@@ -63,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        if (item.getItemId() == R.id.action_cat) {
+            startActivity(new Intent(MainActivity.this, AddCategoryActivity.class));
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

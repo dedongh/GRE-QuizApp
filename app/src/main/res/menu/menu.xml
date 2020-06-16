@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_logout"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         android:title="Logout"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_cat"
+        android:orderInCategory="100"
+        android:title="Add Category"
         app:showAsAction="never" />
 </menu>

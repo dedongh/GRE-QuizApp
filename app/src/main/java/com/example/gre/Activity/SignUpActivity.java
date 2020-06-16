@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.gre.Model.Category;
 import com.example.gre.Model.User;
 import com.example.gre.R;
 import com.example.gre.Utility.Tools;
@@ -19,8 +20,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import dmax.dialog.SpotsDialog;
 
@@ -30,7 +35,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     FirebaseAuth auth;
     FirebaseDatabase db;
-    DatabaseReference users;
+    DatabaseReference users, scores, categories;
+    FirebaseUser currentUser;
 
     String name, phone, email, password, user_id;
     @Override
@@ -44,6 +50,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         users = db.getReference("users");
+        scores = db.getReference("scores");
+        categories = db.getReference("categories");
+
+        currentUser = auth.getCurrentUser();
 
         initializeView();
     }
@@ -120,9 +130,39 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+
+                                categories
+                                        .addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.exists()) {
+                                                    for (DataSnapshot cat_items : dataSnapshot.getChildren()){
+                                                        String key = cat_items.child("cat_id").getValue(String.class);
+                                                        Category category = new Category();
+                                                        category.setName(cat_items.child("name").getValue(String.class));
+                                                        category.setScore("0");
+
+                                                        scores.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                                .child(key)
+                                                                .setValue(category);
+
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+
                                 progressDialog.dismiss();
-                                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
                                 finish();
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
