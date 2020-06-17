@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/spacing_mlarge"
+    android:layout_marginTop="@dimen/spacing_large"
+
+    android:orientation="vertical">
+
+
+    <!-- row 1-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:orientation="horizontal">
+
+        <!-- 1 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="70.0dip"
+                android:layout_height="70.0dip"
+                android:padding="@dimen/spacing_small">
+
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="3"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/grey_90"
+                    app:fontFamily="sans-serif-medium" />
+
+                <ProgressBar
+                    android:id="@+id/cat_progress"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="40"
+                    android:progressDrawable="@drawable/circular_progress_bar_green" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/cat_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="category"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_60" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

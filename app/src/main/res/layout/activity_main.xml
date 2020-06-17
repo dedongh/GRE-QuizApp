@@ -28,14 +28,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize" />
-               <!-- <androidx.appcompat.widget.Toolbar
-                    android:id="@id/toolbar"
-                    android:layout_width="fill_parent"
-                    android:layout_height="?actionBarSize"
-                    android:background="@android:color/white"
-                    app:contentInsetStartWithNavigation="0.0dip"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/Toolbar.Light" />-->
 
                 <View
                     android:layout_width="fill_parent"
@@ -85,9 +77,10 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bra Emma"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/blue_grey_800"
                             app:fontFamily="sans-serif-medium" />
@@ -199,338 +192,22 @@
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/spacing_mlarge" />
 
-                <LinearLayout
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_width="fill_parent"
+                <!-- Categories-->
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Score board"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/blue_grey_500"
+                    app:fontFamily="sans-serif-medium"
                     android:layout_marginLeft="@dimen/spacing_mlarge"
-                    android:layout_marginRight="@dimen/spacing_mlarge"
-                    android:orientation="vertical">
+                    android:layout_marginRight="@dimen/spacing_mlarge"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Categories"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                        android:textColor="@color/blue_grey_500"
-                        app:fontFamily="sans-serif-medium" />
-
-                    <!-- row 1-->
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_middle"
-                        android:orientation="horizontal">
-
-                        <!-- 1 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="3"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="90"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sentence \n Equivalence"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="0.0dip"
-                            android:layout_height="0.0dip"
-                            android:layout_weight="1.0" />
-                        <!-- 2 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="90%"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="90"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Text \n Completion"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="0.0dip"
-                            android:layout_height="0.0dip"
-                            android:layout_weight="1.0" />
-
-                        <!-- 3 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="80%"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="80"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Linear \n Expression"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="0.0dip"
-                            android:layout_height="0.0dip"
-                            android:layout_weight="1.0" />
-
-                        <!-- 4 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="85%"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="85"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Arithmetic"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- row 2-->
-                    <LinearLayout
-
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_mxlarge"
-                        android:orientation="horizontal">
-
-                        <!-- 1 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="3"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="90"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Algebra"
-                                android:maxLines="2"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="0.0dip"
-                            android:layout_height="0.0dip"
-                            android:layout_weight="1.0" />
-                        <!-- 2 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="90%"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="90"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Functions"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="0.0dip"
-                            android:layout_height="0.0dip"
-                            android:layout_weight="1.0" />
-
-                        <!-- 3 -->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="70.0dip"
-                                android:layout_height="70.0dip"
-                                android:padding="@dimen/spacing_small">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:text="80%"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                    android:textColor="@color/grey_90"
-                                    app:fontFamily="sans-serif-medium" />
-
-                                <ProgressBar
-                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:indeterminate="false"
-                                    android:max="100"
-                                    android:progress="80"
-                                    android:progressDrawable="@drawable/circular_progress_bar_green" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Percentages"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/grey_60" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cat_recycleriew"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <View
                     android:layout_width="fill_parent"

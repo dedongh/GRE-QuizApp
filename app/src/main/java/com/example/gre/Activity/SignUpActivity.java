@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -130,6 +131,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+
+                                SharedPreferences userPref = getSharedPreferences("USER", MODE_PRIVATE);
+
+                                SharedPreferences.Editor editor  = userPref.edit();
+                                editor.putString("user_name", name);
+                                editor.commit();
 
                                 categories
                                         .addValueEventListener(new ValueEventListener() {
