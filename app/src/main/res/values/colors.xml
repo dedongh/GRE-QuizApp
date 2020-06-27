@@ -27,8 +27,15 @@
     <color name="grey_60">#666666</color>
     <color name="grey_90">#263238</color>
     <color name="light_green_A700">#64DD17</color>
-
+    <color name="gray_text">#B6B6B6</color>
     <color name="red_300">#E57373</color>
 
     <color name="blue_grey_500">#607D8B</color>
+
+    <color name="green_900">#1B5E20</color>
+
+    <color name="quiz_color">#55D394</color>
+    <color name="colorPrimary1">#008577</color>
+    <color name="colorPrimaryDark1">#00574B</color>
+    <color name="white">#fff</color>
 </resources>

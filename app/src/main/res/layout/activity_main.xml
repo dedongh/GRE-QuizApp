@@ -197,22 +197,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_mlarge"
+                    android:layout_marginRight="@dimen/spacing_mlarge"
                     android:text="Score board"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:textColor="@color/blue_grey_500"
-                    app:fontFamily="sans-serif-medium"
-                    android:layout_marginLeft="@dimen/spacing_mlarge"
-                    android:layout_marginRight="@dimen/spacing_mlarge"/>
+                    app:fontFamily="sans-serif-medium" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cat_recycleriew"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/spacing_mlarge" />
-
 
 
                 <View
@@ -300,19 +299,21 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <io.github.yavski.fabspeeddial.FabSpeedDial
+        android:id="@+id/study_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="15dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:tint="@android:color/white"
-        app:backgroundTint="@color/teal_500"
+        android:layout_marginBottom="10dp"
+        app:fabGravity="bottom_end"
+        app:fabBackgroundTint="@color/colorPrimary1"
+        app:miniFabBackgroundTint="@android:color/white"
+        app:miniFabDrawableTint="@color/colorPrimaryDark1"
+        app:miniFabTitleTextColor="@color/colorPrimaryDark1"
+        app:fabMenu="@menu/fab_menu"
         app:elevation="2dp"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/ic_baseline_play_circle_outline" />
+        app:fabDrawable="@drawable/ic_baseline_play_circle_outline"/>
 
 
 </RelativeLayout>
