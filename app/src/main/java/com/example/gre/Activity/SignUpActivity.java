@@ -125,6 +125,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 user.setName(name);
                 user.setPhone(phone);
                 user.setPassword(password);
+                user.setScore("0");
 
                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .setValue(user)

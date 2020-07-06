@@ -76,25 +76,7 @@
                                 android:textColor="@color/grey_40"
                                 app:fontFamily="sans-serif-medium" />
 
-                           <!-- <ImageButton
-                                android:layout_width="@dimen/spacing_xmlarge"
-                                android:layout_height="@dimen/spacing_xmlarge"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:tint="@color/green_400"
-                                app:srcCompat="@drawable/ic_add" />-->
-
                         </LinearLayout>
-
-                      <!--  <View
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/spacing_middle" />-->
-
-                        <!--<TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ETH Balance"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/green_300" />-->
 
                         <TextView
                             android:padding="10dp"
@@ -105,13 +87,6 @@
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
                             android:textColor="@android:color/black"
                             app:fontFamily="sans-serif-medium" />
-
-                        <!--<TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3734.89 USD"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/grey_40" />-->
 
                         <View
                             android:layout_width="0dp"
@@ -127,12 +102,13 @@
 
 
                 <TextView
+                    android:id="@+id/txt_total_question"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_medium"
                     android:layout_marginTop="@dimen/spacing_middle"
                     android:gravity="center"
-                    android:text="Options"
+                    android:text="1/2"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                     android:textColor="@color/grey_5"
                     app:fontFamily="sans-serif-medium" />
@@ -160,12 +136,47 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <RadioGroup
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Receive"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-                                android:textColor="@color/green_900" />
+                                android:orientation="vertical">
+                                <RadioButton android:id="@+id/option_a"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="option 1"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/green_900"
+                                  />
+                                <RadioButton android:id="@+id/option_b"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="option 2"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/green_900"
+                                    />
+                                <RadioButton android:id="@+id/option_c"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="option 3"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/green_900"
+                                    />
+                                <RadioButton android:id="@+id/option_d"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="option 4"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/green_900"
+                                    />
+                                <RadioButton android:id="@+id/option_e"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="option 5"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/green_900"
+                                    />
+
+                            </RadioGroup>
 
                         </LinearLayout>
 
