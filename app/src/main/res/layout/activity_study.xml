@@ -86,7 +86,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="Question 1"
+                            android:text="Loading"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
                             android:textColor="@android:color/black"
                             app:fontFamily="sans-serif-medium" />
@@ -111,7 +111,7 @@
                     android:layout_marginTop="@dimen/spacing_middle"
                     android:layout_marginBottom="@dimen/spacing_medium"
                     android:gravity="center"
-                    android:text="1/2"
+                    android:text="1/10"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                     android:textColor="@color/grey_5"
                     app:fontFamily="sans-serif-medium" />
@@ -144,7 +144,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                                android:text="option 1"
+                                android:text="Loading"
                                 android:textColor="@color/green_900" />
 
                             <RadioButton
@@ -152,7 +152,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                                android:text="option 2"
+                                android:text="Loading"
                                 android:textColor="@color/green_900" />
 
                             <RadioButton
@@ -160,7 +160,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                                android:text="option 3"
+                                android:text="Loading"
                                 android:textColor="@color/green_900" />
 
                             <RadioButton
@@ -168,7 +168,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                                android:text="option 4"
+                                android:text="Loading"
                                 android:textColor="@color/green_900" />
 
                             <RadioButton
@@ -176,7 +176,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                                android:text="option 5"
+                                android:text="Loading"
                                 android:textColor="@color/green_900" />
 
                         </RadioGroup>

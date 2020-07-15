@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseUser currentUser;
 
     List<Question> tempQuestions = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +103,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
                         Common.questionArrayList = tempQuestions.stream().limit(10).collect(Collectors.<Question>toList());
 
                         totalQuestion = Common.questionArrayList.size();
+
 
                         showQuestion(++index);
                     }
@@ -155,8 +158,11 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
                if (radioButton.getText().toString().equals(Common.questionArrayList.get(index).getAnswer())) {
                    score += 2;
                    correctAnswer++;
+
+                   Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), score);
                    showQuestion(++index); // next question
                } else {
+                   Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), score);
                    showQuestion(++index);
                }
             }

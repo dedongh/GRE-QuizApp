@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.gre.Adapter.CategoryAdapter;
 import com.example.gre.Model.Category;
+import com.example.gre.Model.User;
 import com.example.gre.R;
 import com.example.gre.Utility.GridSpacingItemDecoration;
 import com.example.gre.Utility.Tools;
@@ -29,9 +31,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseReference users;
     DatabaseReference scores;
     private FirebaseUser currentUser;
-    private TextView txt_user_name;
+    private TextView txt_user_name, txt_user_score;
     private FabSpeedDial study_now;
 
 
@@ -71,10 +76,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initializeView() {
         txt_user_name = (TextView) findViewById(R.id.user_name);
+        txt_user_score = (TextView) findViewById(R.id.user_score);
 
         SharedPreferences userPref = getSharedPreferences("USER", MODE_PRIVATE);
 
-        txt_user_name.setText(userPref.getString("user_name", null));
+        //txt_user_name.setText(userPref.getString("user_name", null));
+
+        // display user scores
+
+        users.child(currentUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        txt_user_name.setText(user.getName());
+                        txt_user_score.setText(user.getScore());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
         recyclerView = (RecyclerView) findViewById(R.id.cat_recycleriew);
 
         study_now = (FabSpeedDial) findViewById(R.id.study_activity);

@@ -56,4 +56,16 @@ public class User {
     public void setScore(String score) {
         this.score = score;
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", score='" + score + '\'' +
+                '}';
+    }
 }
