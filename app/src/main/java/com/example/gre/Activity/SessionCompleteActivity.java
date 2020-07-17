@@ -23,8 +23,7 @@ public class SessionCompleteActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseDatabase db;
-    DatabaseReference users;
-    DatabaseReference scores;
+    DatabaseReference users, scores;
     private FirebaseUser currentUser;
     private TextView txt_score, txt_questions_answered;
     @Override
@@ -68,12 +67,38 @@ public class SessionCompleteActivity extends AppCompatActivity {
                     Toast.makeText(SessionCompleteActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
+            //
+
+            for(Map.Entry m : Common.scores_by_category.entrySet()){
+                int values = 80 + (int)m.getValue();
+                Log.e("TAG", "Key : "+ m.getKey()+" Value : "+m.getValue());
+
+                scores.child(currentUser.getUid()).child((String) m.getKey())
+                        .child("score")
+                        .setValue(Integer.toString(values))
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("TAG", "onFailure: "+e.getMessage() );
+                    }
+                });
+            }
+
         }
 
-        for(Map.Entry m : Common.scores_by_category.entrySet()){
-            Log.e("TAG", "Key : "+ m.getKey()+" Value : "+m.getValue());
-        }
 
+        /*
+        -M9tTAWCE5-1YWmG1MyD Value : 0
+-M9tTHwEQ1hzdfiThaDe Value : 0
+-M9tTKFAFDW0eKj63BtT Value : 2
+-M9tT4Wru41q2OH2Wh7F Value : 2
+        * */
     }
 
     @Override
@@ -81,10 +106,5 @@ public class SessionCompleteActivity extends AppCompatActivity {
         super.onDestroy();
         Common.scores_by_category.clear();
     }
-
-
-
-    /*for(Map.Entry m : map.entrySet()){
-        System.out.println(m.getKey()+" "+m.getValue());
-    }*/
+    
 }

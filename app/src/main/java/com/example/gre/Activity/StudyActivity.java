@@ -11,12 +11,14 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gre.Common.Common;
+import com.example.gre.Model.Category;
 import com.example.gre.Model.Question;
 import com.example.gre.R;
 import com.example.gre.Utility.Tools;
@@ -38,10 +40,12 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
     private String session_type;
     private RadioGroup radioGroup;
-    private RadioButton option_a, option_b, option_c, option_d, option_e;
-    private RadioButton radioButton;
+    private RadioButton option_a, option_b, option_c, option_d, option_e, radioButton;
     private CardView next_question, previous_question;
     private TextView txt_total_question, txt_question, txt_category_name;
+    private CheckBox chk_option_a, chk_option_b, chk_option_c, chk_option_d, chk_option_e, chk_option_f;
+
+    private CardView check_box_options, radio_btn_options;
 
     final static long INTERVAL = 1000; // 1sec
     final static  long TIMEOUT = 30000; // 30s
@@ -51,7 +55,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
     FirebaseAuth auth;
     FirebaseDatabase db;
-    DatabaseReference users, scores, questions;
+    DatabaseReference users, scores, questions, categories;
     private FirebaseUser currentUser;
 
     List<Question> tempQuestions = new ArrayList<>();
@@ -69,11 +73,18 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         users = db.getReference("users");
         scores = db.getReference("scores");
         questions = db.getReference("questions");
+        categories = db.getReference("categories");
         currentUser = auth.getCurrentUser();
+
+        check_box_options = (CardView) findViewById(R.id.chk_options);
+        radio_btn_options = (CardView) findViewById(R.id.radio_options);
+
 
         if (getIntent().getStringExtra("SESSION_TYPE") != null) {
             session_type = getIntent().getStringExtra("SESSION_TYPE");
         }
+
+
 
         initializeView();
 
@@ -94,7 +105,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot questionSnapShot : snapshot.getChildren()) {
                             Question question = questionSnapShot.getValue(Question.class);
-                            //Common.questionArrayList.add(question);
                             tempQuestions.add(question);
                         }
 
@@ -124,6 +134,14 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         option_d = (RadioButton) findViewById(R.id.option_d);
         option_e = (RadioButton) findViewById(R.id.option_e);
 
+        //checkboxes
+        chk_option_a = (CheckBox) findViewById(R.id.chk_option_a);
+        chk_option_b = (CheckBox) findViewById(R.id.chk_option_b);
+        chk_option_c = (CheckBox) findViewById(R.id.chk_option_c);
+        chk_option_d = (CheckBox) findViewById(R.id.chk_option_d);
+        chk_option_e = (CheckBox) findViewById(R.id.chk_option_e);
+        chk_option_f = (CheckBox) findViewById(R.id.chk_option_f);
+
         txt_question = (TextView) findViewById(R.id.txt_question);
         txt_total_question = (TextView) findViewById(R.id.txt_total_question);
         txt_category_name = (TextView) findViewById(R.id.txt_category_name);
@@ -132,15 +150,10 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         previous_question = (CardView) findViewById(R.id.previous);
 
         next_question.setOnClickListener(this);
+        previous_question.setOnClickListener(this);
+
     }
 
-    public void checkSelectedRadioButton(View view) {
-        int selectedID = radioGroup.getCheckedRadioButtonId();
-
-        radioButton = findViewById(selectedID);
-
-        Toast.makeText(this, ""+ radioButton.getText().toString(), Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onClick(View v) {
@@ -149,23 +162,55 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
             radioButton = findViewById(selectedID);
 
-            if (selectedID == -1) {
-                Toast.makeText(this, "Please select an answer", Toast.LENGTH_SHORT).show();
-                return;
-            }
+
+
             // check if there's still questions in the list
            if (index < totalQuestion) {
-               if (radioButton.getText().toString().equals(Common.questionArrayList.get(index).getAnswer())) {
-                   score += 2;
-                   correctAnswer++;
 
-                   Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), score);
-                   showQuestion(++index); // next question
+               if (Common.questionArrayList.get(index).getAnswer_2() == null) {
+                   if (selectedID == -1) {
+                       Toast.makeText(this, "Please select an answer", Toast.LENGTH_SHORT).show();
+                       return;
+                   }
+
+                   if (radioButton.getText().toString().equals(Common.questionArrayList.get(index).getAnswer())) {
+                       score += 2;
+                       correctAnswer++;
+
+                       if (Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) == null) {
+                           Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), 0);
+                       }
+                       Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) + 2);
+                       showQuestion(++index); // next question
+                   } else {
+                       if (Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) == null) {
+                           Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), 0);
+                       }
+                       Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) + 0);
+
+                       showQuestion(++index);
+                   }
                } else {
-                   Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), score);
                    showQuestion(++index);
                }
+
+
             }
+        }
+
+        if (v == previous_question) {
+               //showQuestion(--index);
+           /* CheckBox checkBox = ((CheckBox) v);
+
+            if (checkBox.isChecked()) {
+                int checkBoxId = checkBox.getId();
+
+                Toast.makeText(this, "ID: "+ checkBoxId, Toast.LENGTH_SHORT).show();
+            }*/
+
+
+
+
         }
     }
 
@@ -176,13 +221,50 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
             txt_question.setText(Common.questionArrayList.get(index).getQuestion());
 
+            // radio buttons
             option_a.setText(Common.questionArrayList.get(index).getOption_a());
             option_b.setText(Common.questionArrayList.get(index).getOption_b());
             option_c.setText(Common.questionArrayList.get(index).getOption_c());
             option_d.setText(Common.questionArrayList.get(index).getOption_d());
             option_e.setText(Common.questionArrayList.get(index).getOption_e());
 
-            //countDownTimer.start();
+            if (Common.questionArrayList.get(index).getAnswer_2() != null) {
+                check_box_options.setVisibility(View.VISIBLE);
+                radio_btn_options.setVisibility(View.GONE);
+            } else {
+                radio_btn_options.setVisibility(View.VISIBLE);
+                check_box_options.setVisibility(View.GONE);
+            }
+
+            // checkboxes
+            chk_option_a.setText(Common.questionArrayList.get(index).getOption_a());
+            chk_option_b .setText(Common.questionArrayList.get(index).getOption_b());
+            chk_option_c.setText(Common.questionArrayList.get(index).getOption_c());
+            chk_option_d.setText(Common.questionArrayList.get(index).getOption_d());
+            chk_option_e.setText(Common.questionArrayList.get(index).getOption_e());
+            chk_option_f.setText(Common.questionArrayList.get(index).getOption_f());
+
+
+            final String cat_id = Common.questionArrayList.get(index).getCategory_id();
+
+            categories.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot categorySnapShot : snapshot.getChildren()){
+                        Category category = categorySnapShot.getValue(Category.class);
+                        if (category.getCat_id().equals(cat_id)) {
+                            txt_category_name.setText(category.getName());
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(StudyActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         } else {
             // final question do something
             Intent intent = new Intent(StudyActivity.this, SessionCompleteActivity.class);
@@ -204,4 +286,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
         //showQuestion(++index);
     }
+
+
 }
