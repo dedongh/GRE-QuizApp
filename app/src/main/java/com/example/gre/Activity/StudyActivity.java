@@ -190,8 +190,49 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
                        showQuestion(++index);
                    }
-               } else {
-                   showQuestion(++index);
+               }
+
+               else {
+
+                   ArrayList<String> checkedAnswers = new ArrayList<>();
+                   if (chk_option_a.isChecked()) {
+                       checkedAnswers.add(chk_option_a.getText().toString());
+                   }
+                   if (chk_option_b.isChecked()) {
+                       checkedAnswers.add(chk_option_b.getText().toString());
+                   }
+                   if (chk_option_c.isChecked()) {
+                       checkedAnswers.add(chk_option_c.getText().toString());
+                   }
+                   if (chk_option_d.isChecked()) {
+                       checkedAnswers.add(chk_option_d.getText().toString());
+                   }
+                   if (chk_option_e.isChecked()) {
+                       checkedAnswers.add(chk_option_e.getText().toString());
+                   }
+                   if (chk_option_f.isChecked()) {
+                       checkedAnswers.add(chk_option_f.getText().toString());
+                   }
+
+                   Log.e("TAG2", "Main: "+ checkedAnswers.size());
+
+                   Log.e("TAG2", "Answer_2: "+ Common.questionArrayList.get(index).getAnswer_2());
+
+                   //showQuestion(++index);
+
+                   if (Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) == null) {
+                       Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), 0);
+                   }
+                   if (checkAns(checkedAnswers, Common.questionArrayList.get(index).getAnswer(), Common.questionArrayList.get(index).getAnswer_2())) {
+                       Toast.makeText(this, "CORRECT", Toast.LENGTH_SHORT).show();
+                       Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) + 2);
+
+                       showQuestion(++index);
+                   } else {
+                       Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show();
+                       Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) + 0);
+                       showQuestion(++index);
+                   }
                }
 
 
@@ -200,18 +241,25 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
         if (v == previous_question) {
                //showQuestion(--index);
-           /* CheckBox checkBox = ((CheckBox) v);
-
-            if (checkBox.isChecked()) {
-                int checkBoxId = checkBox.getId();
-
-                Toast.makeText(this, "ID: "+ checkBoxId, Toast.LENGTH_SHORT).show();
-            }*/
-
-
-
 
         }
+    }
+
+    private boolean checkAns(ArrayList<String> checked, String ans1, String ans2){
+        ArrayList<String> correctAns = new ArrayList<>();
+        Log.e("TAG2", String.valueOf(checked.size()));
+        Log.e("TAG2" , " user_checked: " + ans1 + " ans2: "+ ans2 );
+        for(String ans : checked){
+            if(ans.equals(ans1) || ans.equals(ans2)){
+                correctAns.add(ans);
+                Log.e("TAG2", "checkAns: "+ ans + " user_checked: " + ans1 + " ans2: "+ ans2 );
+            }
+        }
+        Log.e("TAG2: correct answer", String.valueOf(correctAns.size()));
+        if(correctAns.size() == 2)
+             return true;
+        else
+            return false;
     }
 
     private void showQuestion(int index) {
@@ -238,7 +286,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
             // checkboxes
             chk_option_a.setText(Common.questionArrayList.get(index).getOption_a());
-            chk_option_b .setText(Common.questionArrayList.get(index).getOption_b());
+            chk_option_b.setText(Common.questionArrayList.get(index).getOption_b());
             chk_option_c.setText(Common.questionArrayList.get(index).getOption_c());
             chk_option_d.setText(Common.questionArrayList.get(index).getOption_d());
             chk_option_e.setText(Common.questionArrayList.get(index).getOption_e());
