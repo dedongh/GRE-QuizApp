@@ -214,22 +214,17 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
                        checkedAnswers.add(chk_option_f.getText().toString());
                    }
 
-                   Log.e("TAG2", "Main: "+ checkedAnswers.size());
-
-                   Log.e("TAG2", "Answer_2: "+ Common.questionArrayList.get(index).getAnswer_2());
-
-                   //showQuestion(++index);
 
                    if (Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) == null) {
                        Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), 0);
                    }
                    if (checkAns(checkedAnswers, Common.questionArrayList.get(index).getAnswer(), Common.questionArrayList.get(index).getAnswer_2())) {
-                       Toast.makeText(this, "CORRECT", Toast.LENGTH_SHORT).show();
+                       score += 2;
+                       correctAnswer++;
                        Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) + 2);
 
                        showQuestion(++index);
                    } else {
-                       Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show();
                        Common.scores_by_category.put(Common.questionArrayList.get(index).getCategory_id(), Common.scores_by_category.get(Common.questionArrayList.get(index).getCategory_id()) + 0);
                        showQuestion(++index);
                    }
@@ -247,15 +242,12 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean checkAns(ArrayList<String> checked, String ans1, String ans2){
         ArrayList<String> correctAns = new ArrayList<>();
-        Log.e("TAG2", String.valueOf(checked.size()));
-        Log.e("TAG2" , " user_checked: " + ans1 + " ans2: "+ ans2 );
         for(String ans : checked){
             if(ans.equals(ans1) || ans.equals(ans2)){
                 correctAns.add(ans);
-                Log.e("TAG2", "checkAns: "+ ans + " user_checked: " + ans1 + " ans2: "+ ans2 );
             }
         }
-        Log.e("TAG2: correct answer", String.valueOf(correctAns.size()));
+
         if(correctAns.size() == 2)
              return true;
         else
