@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gre.Adapter.CategoryAdapter;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txt_user_name, txt_user_score;
     private FabSpeedDial study_now;
 
+    private ImageView highest_score, fastest_time, most_correct, nice_move, all_correct, wel_done;
 
     private RecyclerView recyclerView;
 
@@ -78,26 +80,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txt_user_name = (TextView) findViewById(R.id.user_name);
         txt_user_score = (TextView) findViewById(R.id.user_score);
 
+        highest_score = (ImageView)findViewById(R.id.highest_score);
+        fastest_time = (ImageView)findViewById(R.id.fastest_time);
+        most_correct = (ImageView)findViewById(R.id.most_correct);
+        nice_move = (ImageView)findViewById(R.id.nice_move);
+        all_correct = (ImageView)findViewById(R.id.all_correct);
+        wel_done = (ImageView)findViewById(R.id.wel_done);
+
         SharedPreferences userPref = getSharedPreferences("USER", MODE_PRIVATE);
 
         //txt_user_name.setText(userPref.getString("user_name", null));
 
-        // display user scores
-
-        users.child(currentUser.getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        User user = snapshot.getValue(User.class);
-                        txt_user_name.setText(user.getName());
-                        txt_user_score.setText(user.getScore());
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+       loadAchievements();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.cat_recycleriew);
@@ -210,5 +204,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAchievements();
+    }
+
+    private void loadAchievements() {
+        // display user scores
+
+        users.child(currentUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        txt_user_name.setText(user.getName());
+                        txt_user_score.setText(user.getScore());
+
+                        int score = Integer.parseInt(user.getScore());
+
+                        if (score >= 90) {
+                            highest_score.setVisibility(View.VISIBLE);
+                            all_correct.setVisibility(View.VISIBLE);
+                            most_correct.setVisibility(View.VISIBLE);
+                            fastest_time.setVisibility(View.VISIBLE);
+                            wel_done.setVisibility(View.VISIBLE);
+                        }
+
+                        if (score > 86) {
+                            most_correct.setVisibility(View.VISIBLE);
+                            fastest_time.setVisibility(View.VISIBLE);
+                        }
+                        if (score > 82) {
+                            nice_move.setVisibility(View.VISIBLE);
+                            fastest_time.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

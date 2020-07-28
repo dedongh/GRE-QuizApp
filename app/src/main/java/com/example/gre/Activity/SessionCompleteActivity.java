@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gre.Common.Common;
 import com.example.gre.R;
+import com.example.gre.Utility.Tools;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,13 +24,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
-public class SessionCompleteActivity extends AppCompatActivity {
+public class SessionCompleteActivity extends AppCompatActivity implements View.OnClickListener{
 
     FirebaseAuth auth;
     FirebaseDatabase db;
     DatabaseReference users, scores;
     private FirebaseUser currentUser;
     private TextView txt_score, txt_questions_answered;
+    private RelativeLayout parent_layout, congrats_layout;
+    private Button btn_view_report;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +41,12 @@ public class SessionCompleteActivity extends AppCompatActivity {
         txt_questions_answered = (TextView) findViewById(R.id.txt_total_question);
 
         txt_score = (TextView) findViewById(R.id.txt_final_score);
+
+        parent_layout = (RelativeLayout) findViewById(R.id.parentLayout);
+        congrats_layout = (RelativeLayout) findViewById(R.id.congrats_layout);
+
+        btn_view_report = (Button) findViewById(R.id.view_reports);
+        btn_view_report.setOnClickListener(this);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
@@ -44,6 +57,7 @@ public class SessionCompleteActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
+
             int score = extra.getInt("SCORE");
             int correct_questions = extra.getInt("CORRECT");
             int total_questions = extra.getInt("TOTAL");
@@ -53,6 +67,25 @@ public class SessionCompleteActivity extends AppCompatActivity {
             txt_score.setText(String.format("SCORE : %d", score));
 
             txt_questions_answered.setText(String.format("PASSED : %d / %d", correct_questions, total_questions ));
+
+            // set background colour based on scores
+            if (score <= 88) {
+                Tools.setSystemBarColor(this, R.color.deep_orange_400);
+                Tools.setSystemBarLight(this);
+                parent_layout.setBackgroundColor(getResources().getColor(R.color.deep_orange_400));
+            }
+
+            if (score > 88 && score <= 94 ) {
+                Tools.setSystemBarColor(this, R.color.blue_400);
+                Tools.setSystemBarLight(this);
+                parent_layout.setBackgroundColor(getResources().getColor(R.color.blue_400));
+            }
+
+            if (score > 94) {
+                Tools.setSystemBarColor(this, R.color.green_400);
+                Tools.setSystemBarLight(this);
+                parent_layout.setBackgroundColor(getResources().getColor(R.color.green_400));
+            }
 
             users.child(currentUser.getUid())
             .child("score")
@@ -106,5 +139,11 @@ public class SessionCompleteActivity extends AppCompatActivity {
         super.onDestroy();
         Common.scores_by_category.clear();
     }
-    
+
+    @Override
+    public void onClick(View v) {
+        if (v == btn_view_report) {
+            congrats_layout.setVisibility(View.GONE);
+        }
+    }
 }
