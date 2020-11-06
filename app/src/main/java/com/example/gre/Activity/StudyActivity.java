@@ -312,6 +312,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
             bundle.putInt("SCORE", score);
             bundle.putInt("TOTAL", totalQuestion);
             bundle.putInt("CORRECT", correctAnswer);
+            bundle.putString("SESSION_TYPE", session_type);
             intent.putExtras(bundle);
             startActivity(intent);
             finish();

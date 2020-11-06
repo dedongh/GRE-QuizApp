@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/con_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -20,27 +21,159 @@
             android:textColor="@color/white"
             android:text="Congratulations"
             android:textSize="30sp" />
+        <TextView
+            android:layout_below="@+id/con_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textStyle="italic|bold"
+            android:textColor="@color/white"
+            android:text="You have unlocked some awesome rewards"
+             />
 
         <ImageView
+            android:id="@+id/imgVw"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:src="@drawable/winner_1"
             android:layout_centerInParent="true"/>
 
-        <Button
-            android:layout_margin="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:id="@+id/view_reports"
-            android:text="Continue"
-            android:background="@drawable/btn_congrats"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+
+
     </RelativeLayout>
 
 
+    <RelativeLayout
+        android:id="@+id/remarksLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <TextView
+            android:id="@+id/rem_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Remarks"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/txtReady"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="You are now ready for the GRE"
+            android:layout_centerInParent="true"
+            android:textSize="30sp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/txt_nicely"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txtReady"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="You are coming along nicely lets try another session"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/txt_arithmetic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txt_nicely"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Speed up your arithmetic and reach for the stars"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/txt_algebra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txt_arithmetic"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Great job, lets boost your knowledge on algebra"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/txt_functions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txt_algebra"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Thumbs up you can improve your functions skills"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/txt_completion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txt_functions"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Keep pushing for smarter text completion choices"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/txt_sentence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txt_completion"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Keep pushing for smarter Sentence Equialent choices"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/txt_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/txt_sentence"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Lets improve your linear expressions"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/txt_final_score"
@@ -59,5 +192,25 @@
         android:textSize="25sp"
         android:visibility="gone" />
 
-
+    <Button
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/view_reports"
+        android:text="Continue"
+        android:background="@drawable/btn_congrats"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/close_quiz"
+        android:text="Finish"
+        android:background="@drawable/btn_congrats"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

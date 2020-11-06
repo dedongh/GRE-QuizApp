@@ -233,11 +233,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             wel_done.setVisibility(View.VISIBLE);
                         }
 
-                        if (score > 86) {
+                        if (score >= 86) {
                             most_correct.setVisibility(View.VISIBLE);
                             fastest_time.setVisibility(View.VISIBLE);
                         }
-                        if (score > 82) {
+                        if (score >= 82) {
                             nice_move.setVisibility(View.VISIBLE);
                             fastest_time.setVisibility(View.VISIBLE);
                         }
