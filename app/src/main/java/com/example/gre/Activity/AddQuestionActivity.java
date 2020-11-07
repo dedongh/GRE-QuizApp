@@ -130,12 +130,12 @@ public class AddQuestionActivity extends AppCompatActivity {
                 question.setQuestion(txt_question.getText().toString());
                 question.setOption_a(txt_optionA.getText().toString());
                 question.setOption_b(txt_optionB.getText().toString());
-                question.setOption_c(txt_optionC.getText().toString());
+              /*  question.setOption_c(txt_optionC.getText().toString());
                 question.setOption_d(txt_optionD.getText().toString());
                 question.setOption_e(txt_optionE.getText().toString());
-                question.setOption_f(txt_optionF.getText().toString());
+                question.setOption_f(txt_optionF.getText().toString());*/
                 question.setAnswer(txt_answer.getText().toString());
-                question.setCategory_id(category_id);
+                //question.setCategory_id(category_id);
 
                 questionsRef.child(txt_question_type.getText().toString().toLowerCase())
                         .push()

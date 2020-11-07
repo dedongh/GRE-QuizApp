@@ -133,11 +133,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                SharedPreferences userPref = getSharedPreferences("USER", MODE_PRIVATE);
+                                /*SharedPreferences userPref = getSharedPreferences("USER", MODE_PRIVATE);
 
                                 SharedPreferences.Editor editor  = userPref.edit();
                                 editor.putString("user_name", name);
-                                editor.commit();
+                                editor.commit();*/
 
                                 categories
                                         .addValueEventListener(new ValueEventListener() {

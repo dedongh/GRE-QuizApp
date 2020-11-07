@@ -106,13 +106,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.action_start_quantitative) {
-                    Intent intent = new Intent(MainActivity.this, StudyActivity.class);
-                    intent.putExtra("SESSION_TYPE", "quantitative");
+                    Intent intent = new Intent(MainActivity.this, GameOptions.class);
+                    intent.putExtra("ACTIVITY", "quiz");
                     startActivity(intent);
                 }
                 if (menuItem.getItemId() == R.id.action_start_verbal) {
-                    Intent intent = new Intent(MainActivity.this, StudyActivity.class);
-                    intent.putExtra("SESSION_TYPE", "verbal");
+                    Intent intent = new Intent(MainActivity.this, GameOptions.class);
+                    intent.putExtra("ACTIVITY", "game");
                     startActivity(intent);
                 }
                 return true;
@@ -140,7 +140,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onBindViewHolder(@NonNull CategoryAdapter holder, int position, @NonNull Category model) {
                 holder.category_name.setText(model.getName());
-                holder.user_score.setText(model.getScore() + "%");
+                if (model.getScore().equals("80")) {
+                    holder.user_score.setText("20%");
+                }
+                if (model.getScore().equals("82") || model.getScore().equals("84") || model.getScore().equals("86")
+                || model.getScore().equals("88")) {
+                    holder.user_score.setText("40%");
+                }
+                if (model.getScore().equals("90") || model.getScore().equals("92") || model.getScore().equals("94")) {
+                    holder.user_score.setText("70%");
+                }
+                if (model.getScore().equals("96") || model.getScore().equals("98")) {
+                    holder.user_score.setText("90%");
+                }
+                if (model.getScore().equals("100")) {
+                    holder.user_score.setText("100%");
+                }
                 holder.current_progress.setProgress(Integer.parseInt(String.valueOf(model.getScore())));
             }
 
@@ -222,6 +237,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         User user = snapshot.getValue(User.class);
                         txt_user_name.setText(user.getName());
                         txt_user_score.setText(user.getScore());
+
+                        SharedPreferences userPref = getSharedPreferences("USER", MODE_PRIVATE);
+
+                        SharedPreferences.Editor editor  = userPref.edit();
+                        editor.putString("user_name", user.getName());
+                        editor.commit();
 
                         int score = Integer.parseInt(user.getScore());
 
