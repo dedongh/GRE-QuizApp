@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">GREMIUS</string>
+    <string name="app_name">GRENIUS</string>
+    <string name="take_a_quiz_disc">This application is strictly for GRE practice and mental gaming experience. The Grenius mobile App does not guarantee high scores during the main GRE on the test day</string>
+    <string name="login_disc">The contents of this application including all data, information, text, graphics and links are to model a prototype for  an academic presentation only and not meant to be marketed or reproduced in any form for any reason</string>
+    <string name="vocab">You are a vocabulary Grenius</string>
+    <string name="math">You are a maths Grenius</string>
 </resources>

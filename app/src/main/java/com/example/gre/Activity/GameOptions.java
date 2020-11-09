@@ -65,8 +65,14 @@ public class GameOptions extends AppCompatActivity implements View.OnClickListen
             startActivity(intent);
         }
         if (v == play_math_game_layout) {
+            Intent intent = new Intent(GameOptions.this, GameActivity.class);
+            intent.putExtra("GAME_TYPE", "pmg");
+            startActivity(intent);
         }
         if (v == play_vocabulary_game_layout) {
+            Intent intent = new Intent(GameOptions.this, GameActivity.class);
+            intent.putExtra("GAME_TYPE", "pvg");
+            startActivity(intent);
         }
     }
 }

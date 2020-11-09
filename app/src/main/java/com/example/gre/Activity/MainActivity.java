@@ -8,17 +8,23 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gre.Adapter.CategoryAdapter;
 import com.example.gre.Model.Category;
@@ -106,14 +112,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.action_start_quantitative) {
-                    Intent intent = new Intent(MainActivity.this, GameOptions.class);
-                    intent.putExtra("ACTIVITY", "quiz");
-                    startActivity(intent);
+                    showCustomDialog("quiz");
                 }
                 if (menuItem.getItemId() == R.id.action_start_verbal) {
-                    Intent intent = new Intent(MainActivity.this, GameOptions.class);
-                    intent.putExtra("ACTIVITY", "game");
-                    startActivity(intent);
+                   showCustomDialog("game");
                 }
                 return true;
             }
@@ -172,6 +174,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setAdapter(adapter);
     }
 
+    private void showCustomDialog(final String whereAt) {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.disclaimer_layout);
+        dialog.setCancelable(false);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        //((TextView) dialog.findViewById(R.id.tv_content)).setMovementMethod(LinkMovementMethod.getInstance());
+
+        TextView txt_disclaimer = ((TextView) dialog.findViewById(R.id.tv_content));
+        txt_disclaimer.setMovementMethod(LinkMovementMethod.getInstance());
+        txt_disclaimer.setText(getString(R.string.take_a_quiz_disc));
+
+        ((Button) dialog.findViewById(R.id.bt_accept)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               dialog.dismiss();
+                if (whereAt.equals("quiz")) {
+                    Intent intent = new Intent(MainActivity.this, GameOptions.class);
+                    intent.putExtra("ACTIVITY", "quiz");
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, GameOptions.class);
+                    intent.putExtra("ACTIVITY", "game");
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }
+
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         /*toolbar.setNavigationIcon(R.drawable.ic_menu);
@@ -180,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
-        actionBar.setTitle("GRE");
+        actionBar.setTitle("GRENIUS");
         Tools.setSystemBarColor(this, R.color.grey_5);
         Tools.setSystemBarLight(this);
     }

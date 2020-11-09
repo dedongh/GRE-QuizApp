@@ -51,7 +51,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     final static  long TIMEOUT = 30000; // 30s
 
     CountDownTimer countDownTimer;
-    int index = 0, score = 80, thisQuestion = 0, totalQuestion, correctAnswer;
+    int index = -1, score = 80, thisQuestion = 0, totalQuestion, correctAnswer;
 
     FirebaseAuth auth;
     FirebaseDatabase db;

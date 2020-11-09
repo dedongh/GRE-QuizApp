@@ -1,12 +1,20 @@
 package com.example.gre.Utility;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Build;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ColorRes;
+
+import com.example.gre.R;
 
 public class Tools {
 
@@ -27,4 +35,5 @@ public class Tools {
             view.setSystemUiVisibility(flags);
         }
     }
+
 }
